@@ -80,7 +80,6 @@ function ListaServicios() {
         </div>
       </section>
 
-      {/* MODAL DETALLE SERVICIO */}
       <div
         className="modal fade"
         id="modalServicioDetalle"
@@ -111,7 +110,6 @@ function ListaServicios() {
               {servicioSeleccionado ? (
                 <>
                   <p>{servicioSeleccionado.descripcion}</p>
-                  {/* si tu JSON tiene más campos, puedes mostrarlos aquí */}
                 </>
               ) : (
                 <p className="text-muted mb-0">

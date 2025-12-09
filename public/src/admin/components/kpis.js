@@ -1,4 +1,3 @@
-// src/components/KPIsCards.jsx
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 
@@ -6,7 +5,7 @@ function KPIsCards({ onChangeSection }) {
   const [servicios, setServicios] = useState([]);
   const [planes, setPlanes] = useState([]);
 
-  // Cargar servicios
+
   useEffect(() => {
     Axios.get("http://localhost:3001/api/servicios")
       .then((res) => {
@@ -16,7 +15,7 @@ function KPIsCards({ onChangeSection }) {
       .catch((err) => console.error("Error cargando servicios:", err));
   }, []);
 
-  // Cargar planes
+
   useEffect(() => {
     Axios.get("http://localhost:3001/api/planes")
       .then((res) => {
@@ -26,25 +25,20 @@ function KPIsCards({ onChangeSection }) {
       .catch((err) => console.error("Error cargando planes:", err));
   }, []);
 
-  // KPI 1: total servicios
+
   const serviciosActivos = servicios.length;
-
-  // KPI 2: total planes configurados
   const planesConfigurados = planes.length;
-
-  // KPI 3: planes residenciales (tipo = "residencial")
+  
   const planesResidenciales = planes.filter(
     (p) => p.tipo === "residencial"
   ).length;
 
-  // ✅ KPI 4: servicios industria (segmento = "industria")
   const serviciosIndustria = servicios.filter(
     (s) => s.segmento === "industria"
   ).length;
 
   return (
     <div className="row">
-      {/* SERVICIOS ACTIVOS */}
       <div className="col-lg-3 col-6">
         <div className="small-box bg-info">
           <div className="inner">
@@ -64,7 +58,6 @@ function KPIsCards({ onChangeSection }) {
         </div>
       </div>
 
-      {/* PLANES CONFIGURADOS */}
       <div className="col-lg-3 col-6">
         <div className="small-box bg-success">
           <div className="inner">
@@ -84,7 +77,6 @@ function KPIsCards({ onChangeSection }) {
         </div>
       </div>
 
-      {/* PLANES RESIDENCIALES */}
       <div className="col-lg-3 col-6">
         <div className="small-box bg-warning">
           <div className="inner">
@@ -104,7 +96,6 @@ function KPIsCards({ onChangeSection }) {
         </div>
       </div>
 
-      {/* SERVICIOS INDUSTRIA */}
       <div className="col-lg-3 col-6">
         <div className="small-box bg-danger">
           <div className="inner">

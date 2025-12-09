@@ -1,4 +1,3 @@
-// src/admin/components/lista_planes.js
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 
@@ -17,7 +16,6 @@ function ListaPlanes() {
 
   const handleVerDetalle = (plan) => {
     setPlanSeleccionado(plan);
-    // abrir modal de Bootstrap
     window.$("#modalPlanDetalle").modal("show");
   };
 
@@ -28,7 +26,6 @@ function ListaPlanes() {
 
   return (
     <>
-      {/* TABLA DE PLANES */}
       <section className="content" id="tab-planes">
         <div className="card card-success card-outline">
           <div className="card-header">
@@ -85,7 +82,6 @@ function ListaPlanes() {
         </div>
       </section>
 
-      {/* MODAL DETALLE PLAN */}
       <div
         className="modal fade"
         id="modalPlanDetalle"
@@ -122,8 +118,8 @@ function ListaPlanes() {
                     {planSeleccionado.tipo === "residencial"
                       ? "Residencial"
                       : planSeleccionado.tipo === "industrial"
-                      ? "Industria"
-                      : planSeleccionado.tipo}
+                        ? "Industria"
+                        : planSeleccionado.tipo}
                   </p>
 
                   {Array.isArray(planSeleccionado.bullets) &&
