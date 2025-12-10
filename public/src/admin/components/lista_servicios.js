@@ -16,7 +16,7 @@ function ListaServicios() {
   }, []);
 
   const handleVerDetalle = (id) => {
-    navigate(`/servicios/${id}`);
+    navigate(`/dashboard/servicios/${id}`);
   };
 
   return (
