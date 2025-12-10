@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 function ListaServicios() {
   const [servicios, setServicios] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     Axios.get("http://localhost:3001/api/servicios")
@@ -16,7 +14,19 @@ function ListaServicios() {
   }, []);
 
   const handleVerDetalle = (id) => {
-    navigate(`/dashboard/servicios/${id}`);
+    const url = `${window.location.origin}/dashboard/servicios/${id}`;
+
+    const width = 900;
+    const height = 700;
+
+    const left = window.screenX + (window.innerWidth - width) / 2;
+    const top = window.screenY + (window.innerHeight - height) / 2;
+
+    window.open(
+      url,
+      "detalleServicioWindow",
+      `width=${width},height=${height},left=${left},top=${top},scrollbars=yes,resizable=yes`
+    );
   };
 
   return (

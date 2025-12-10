@@ -5,7 +5,6 @@ function KPIsCards({ onChangeSection }) {
   const [servicios, setServicios] = useState([]);
   const [planes, setPlanes] = useState([]);
 
-
   useEffect(() => {
     Axios.get("http://localhost:3001/api/servicios")
       .then((res) => {
@@ -14,7 +13,6 @@ function KPIsCards({ onChangeSection }) {
       })
       .catch((err) => console.error("Error cargando servicios:", err));
   }, []);
-
 
   useEffect(() => {
     Axios.get("http://localhost:3001/api/planes")
@@ -25,10 +23,9 @@ function KPIsCards({ onChangeSection }) {
       .catch((err) => console.error("Error cargando planes:", err));
   }, []);
 
-
   const serviciosActivos = servicios.length;
   const planesConfigurados = planes.length;
-  
+
   const planesResidenciales = planes.filter(
     (p) => p.tipo === "residencial"
   ).length;
@@ -36,6 +33,13 @@ function KPIsCards({ onChangeSection }) {
   const serviciosIndustria = servicios.filter(
     (s) => s.segmento === "industria"
   ).length;
+
+  const handleFooterClick = (e, section) => {
+    e.preventDefault(); 
+    if (onChangeSection) {
+      onChangeSection(section);
+    }
+  };
 
   return (
     <div className="row">
@@ -48,13 +52,13 @@ function KPIsCards({ onChangeSection }) {
           <div className="icon">
             <i className="fas fa-tools" />
           </div>
-          <button
-            type="button"
-            className="small-box-footer btn btn-link text-white"
-            onClick={() => onChangeSection && onChangeSection("servicios")}
+          <a
+            href="#"
+            className="small-box-footer"
+            onClick={(e) => handleFooterClick(e, "servicios")}
           >
             Ver servicios <i className="fas fa-arrow-circle-right" />
-          </button>
+          </a>
         </div>
       </div>
 
@@ -67,13 +71,13 @@ function KPIsCards({ onChangeSection }) {
           <div className="icon">
             <i className="fas fa-solar-panel" />
           </div>
-          <button
-            type="button"
-            className="small-box-footer btn btn-link text-white"
-            onClick={() => onChangeSection && onChangeSection("planes")}
+          <a
+            href="#"
+            className="small-box-footer"
+            onClick={(e) => handleFooterClick(e, "planes")}
           >
             Ver planes <i className="fas fa-arrow-circle-right" />
-          </button>
+          </a>
         </div>
       </div>
 
@@ -86,13 +90,13 @@ function KPIsCards({ onChangeSection }) {
           <div className="icon">
             <i className="fas fa-home" />
           </div>
-          <button
-            type="button"
-            className="small-box-footer btn btn-link text-white"
-            onClick={() => onChangeSection && onChangeSection("planes")}
+          <a
+            href="#"
+            className="small-box-footer"
+            onClick={(e) => handleFooterClick(e, "planes")}
           >
             Ir a planes <i className="fas fa-arrow-circle-right" />
-          </button>
+          </a>
         </div>
       </div>
 
@@ -105,13 +109,13 @@ function KPIsCards({ onChangeSection }) {
           <div className="icon">
             <i className="fas fa-industry" />
           </div>
-          <button
-            type="button"
-            className="small-box-footer btn btn-link text-white"
-            onClick={() => onChangeSection && onChangeSection("servicios")}
+          <a
+            href="#"
+            className="small-box-footer"
+            onClick={(e) => handleFooterClick(e, "servicios")}
           >
             Ir a servicios <i className="fas fa-arrow-circle-right" />
-          </button>
+          </a>
         </div>
       </div>
     </div>
