@@ -14,6 +14,7 @@ function App() {
         <Route path='/' element={<Home />}></Route>
         <Route path='/loginAdmin' element={<LoginAdmin />}></Route>
         <Route path='/dashboard' element={<Dashboard />}></Route>
+        <Route path="/servicios/:id" element={<DetalleServicio />} />
       </Routes>
     </Router>
 
