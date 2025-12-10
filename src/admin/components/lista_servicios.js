@@ -1,6 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const ListaServicios = ({ servicios, onVerDetalle }) => {
+function ListaServicios() {
+  const [servicios, setServicios] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    Axios.get("http://localhost:3001/api/servicios")
+      .then((response) => {
+        const data = Array.isArray(response.data) ? response.data : [];
+        setServicios(data);
+      })
+      .catch((error) => console.log("Error al cargar servicios:", error));
+  }, []);
+
+  const handleVerDetalle = (id) => {
+    navigate(`/dashboard/servicios/${id}`);
+  };
+
   return (
     <section className="content" id="tab-servicios">
       <div className="card card-primary card-outline">
@@ -18,7 +36,7 @@ const ListaServicios = ({ servicios, onVerDetalle }) => {
 
         <div className="card-body">
           <div className="table-responsive">
-            <table className="table table-hover table-striped">
+            <table className="table table-striped table-hover">
               <thead className="thead-light">
                 <tr>
                   <th style={{ width: 60 }}>#</th>
@@ -27,15 +45,15 @@ const ListaServicios = ({ servicios, onVerDetalle }) => {
                 </tr>
               </thead>
               <tbody>
-                {servicios.map((s, index) => (
-                  <tr key={s.id || index}>
+                {servicios.map((servicio, index) => (
+                  <tr key={servicio.id || index}>
                     <td>{index + 1}</td>
-                    <td>{s.titulo}</td>
+                    <td>{servicio.titulo}</td>
                     <td>
                       <button
                         type="button"
                         className="btn btn-sm btn-outline-info"
-                        onClick={() => onVerDetalle(s)}
+                        onClick={() => handleVerDetalle(servicio.id)}
                       >
                         <i className="fas fa-eye mr-1" />
                         Ver
@@ -54,12 +72,10 @@ const ListaServicios = ({ servicios, onVerDetalle }) => {
               </tbody>
             </table>
           </div>
-
-  
         </div>
       </div>
     </section>
   );
-};
+}
 
 export default ListaServicios;
