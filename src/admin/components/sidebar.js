@@ -31,7 +31,7 @@ function Sidebar({ activeSection, onChangeSection }) {
             <span className="d-block text-white font-weight-semibold">
               Administrador
             </span>
-            <span className="text-xs text-muted">Panel HelioAndes</span>
+            <span className="text-xs text-white">Panel HelioAndes</span>
           </div>
         </div>
 
