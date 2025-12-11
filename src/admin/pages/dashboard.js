@@ -24,7 +24,7 @@ function Dashboard() {
         <ContentHeader />
         <section className="content">
           <div className="container-fluid">
-            <KpisPrincipal />
+            <KpisPrincipal onChangeSection={setActiveSection}/>
             {activeSection === "servicios" && <ListaServicios />}
             {activeSection === "planes" && <ListaPlanes />}
           </div>
