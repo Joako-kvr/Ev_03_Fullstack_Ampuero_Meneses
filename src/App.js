@@ -5,6 +5,8 @@ import Home from './pages/home';
 import Dashboard from './admin/pages/dashboard';
 import DetalleServicio from './admin/components/detalleServicio';
 import ListaServicios from './admin/components/lista_servicios';
+import DetallePlanes from './admin/components/detallePlanes';
+import ListaPlanes from './admin/components/lista_planes';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path='/dashboard' element={<Dashboard />}></Route>
         <Route path='/dashboard/servicios' element={<ListaServicios />} />
         <Route path="/dashboard/servicios/:id" element={<DetalleServicio />} />
+        <Route path='/dashboard/planes' element={<ListaPlanes />} />
+        <Route path="/dashboard/planes/:id" element={<DetallePlanes />} />
       </Routes>
     </Router>
 

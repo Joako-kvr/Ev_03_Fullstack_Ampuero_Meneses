@@ -2,21 +2,21 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Axios from "axios";
 
-function DetalleServicio() {
+function DetallePlan() {
   const { id } = useParams();
-  const [servicio, setServicio] = useState(null);
+  const [plan, setPlan] = useState(null);
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/api/servicios")
+    Axios.get("http://localhost:3001/api/planes")
       .then((response) => {
         const lista = response.data;
         const encontrado = lista.find((s) => s.id === Number(id));
-        setServicio(encontrado);
+        setPlan(encontrado);
       })
-      .catch((error) => console.log("Error al cargar servicio:", error));
+      .catch((error) => console.log("Error al cargar plan:", error));
   }, [id]);
 
-  if (!servicio) return <p>Cargando...</p>;
+  if (!plan) return <p>Cargando...</p>;
 
   return (
     <div
@@ -42,7 +42,7 @@ function DetalleServicio() {
         }}
       >
         <div className="card-header text-muted border-bottom-0">
-          Servicio
+          Plan
         </div>
 
         <div
@@ -52,21 +52,30 @@ function DetalleServicio() {
           <div className="row">
             <div className="col-7">
               <h2 className="lead">
-                <b>{servicio.titulo || "Servicio sin nombre"}</b>
+                <b>{plan.titulo || "Plan sin nombre"}</b>
               </h2>
               <ul className="ml-4 mb-0 fa-ul text-muted">
 
               </ul>
               <p className="text-muted text-sm">
-                <b>Descripción: </b>
-                {servicio.descripcion || "Sin descripción disponible"}
+                <b>Rango: </b>
+                {plan.rango || "Sin rango disponible"}
               </p>
               <p className="text-muted text-sm">
-                <b>Segmento: </b>
-                {servicio.segmento || "Sin segmento disponible"}
+                <b>Tipo: </b>
+                {plan.tipo || "Sin tipo disponible"}
               </p>
-              <ul className="ml-4 mb-0 fa-ul text-muted">
+              <p>
+                <b>Bullets:</b>
+              </p>
 
+              <ul>
+                {Array.isArray(plan.bullets)
+                  ? plan.bullets.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))
+                  : <li>Sin bullets disponibles</li>
+                }
               </ul>
             </div>
             <div className="col-5 text-center">
@@ -87,7 +96,6 @@ function DetalleServicio() {
             >
               Cerrar
             </a>
-
           </div>
         </div>
       </div>
@@ -95,4 +103,4 @@ function DetalleServicio() {
   );
 }
 
-export default DetalleServicio;
+export default DetallePlan;
