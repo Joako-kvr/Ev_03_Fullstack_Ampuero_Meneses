@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import NavBarPrincipal from "../components/navbar";
 import Sidebar from "../components/sidebar";
@@ -10,20 +10,23 @@ import FooterPrincipal from "../components/footer";
 import AdminLayout from "../components/adminLayout";
 
 function Dashboard() {
+  const [activeSection, setActiveSection] = useState("servicios");
+
   return (
     <AdminLayout>
       <NavBarPrincipal />
-      <Sidebar />
-
+      <Sidebar
+        activeSection={activeSection}
+        onChangeSection={setActiveSection}
+      />
 
       <div className="content-wrapper">
         <ContentHeader />
         <section className="content">
           <div className="container-fluid">
-
             <KpisPrincipal />
-            <ListaServicios />
-            <ListaPlanes />
+            {activeSection === "servicios" && <ListaServicios />}
+            {activeSection === "planes" && <ListaPlanes />}
           </div>
         </section>
       </div>

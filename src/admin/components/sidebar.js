@@ -8,7 +8,7 @@ function Sidebar({ activeSection, onChangeSection }) {
 
   return (
     <aside className="main-sidebar sidebar-dark-primary elevation-4">
-      {/* Brand */}
+
       <a href="#dashboard" className="brand-link">
         <i
           className="fas fa-solar-panel brand-image img-circle elevation-3"
@@ -17,9 +17,9 @@ function Sidebar({ activeSection, onChangeSection }) {
         <span className="brand-text font-weight-light">HelioAndes Admin</span>
       </a>
 
-      {/* Sidebar */}
+
       <div className="sidebar">
-        {/* Usuario */}
+
         <div className="user-panel mt-3 pb-3 mb-3 d-flex">
           <div className="image">
             <i
@@ -35,12 +35,12 @@ function Sidebar({ activeSection, onChangeSection }) {
           </div>
         </div>
 
-        {/* Menú */}
+
         <nav className="mt-2">
           <ul className="nav nav-pills nav-sidebar flex-column" role="menu">
             <li className="nav-header">GESTIÓN</li>
 
-            {/* Servicios */}
+
             <li className="nav-item">
               <a
                 href="#tab-servicios"
@@ -54,7 +54,7 @@ function Sidebar({ activeSection, onChangeSection }) {
               </a>
             </li>
 
-            {/* Planes */}
+
             <li className="nav-item">
               <a
                 href="#tab-planes"
